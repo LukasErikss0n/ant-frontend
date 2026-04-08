@@ -3,7 +3,7 @@
         class="relative flex items-center bg-base-100 border-b border-base-300 px-4 h-18 z-50"
     >
         <router-link to="/" class="text-xl font-bold tracking-tight shrink-0"
-            >Ant</router-link
+            >Ants</router-link
         >
         <div class="join w-1/2 absolute left-1/2 -translate-x-1/2">
             <div class="join-item flex items-center bg-base-200 px-3">
