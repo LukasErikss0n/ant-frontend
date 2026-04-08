@@ -1,0 +1,17 @@
+version: "3.8"
+
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - "5173:5173"
+    volumes:
+      # Sync local files to the container for hot-reloading
+      - .:/app
+      # Ignore the local node_modules and use the container's
+      - /app/node_modules
+    environment:
+      # This forces Vite to watch for file changes inside Docker (crucial for Windows/Mac users)
+      - CHOKIDAR_USEPOLLING=true
