@@ -29,12 +29,15 @@ Make sure you have the following installed on your machine:
 ### Running the Application
 
 1. **Clone the repository**:
-   ```bash
-   git clone [https://github.com/LukasErikss0n/ant-frontend.git](https://github.com/LukasErikss0n/ant-frontend.git)
-   cd ant-frontend
-   ```
+```bash
+git clone https://github.com/LukasErikss0n/ant-frontend.git
+cd ant-frontend
+```
+
+
+
 
 2. **Build and start the container:**
-  ```bash
-  docker-compose up --build
-  ```
+```bash
+docker-compose up --build
+```
