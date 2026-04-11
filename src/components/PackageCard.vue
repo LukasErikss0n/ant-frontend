@@ -1,14 +1,14 @@
 <template>
   <router-link :to="`/packages/${pkg.id}`" class="block">
     <Card
-      class="hover:bg-muted/30 transition-colors cursor-pointer overflow-hidden w-2xl"
+      class="hover:bg-muted/30 transition-colors cursor-pointer overflow-hidden w-full"
     >
       <!-- Card header row -->
       <div
         class="flex items-start justify-between gap-4 bg-muted/40 px-5 py-3 border-b border-border min-h-[80px]"
       >
         <!-- Logo + name + author -->
-        <div class="flex items-center gap-4 min-w-0">
+        <div class="flex items-center gap-4 min-w-0 overflow-hidden">
           <div
             class="w-14 h-14 rounded-md bg-muted flex items-center justify-center text-foreground font-bold text-lg shrink-0 border border-border"
           >
