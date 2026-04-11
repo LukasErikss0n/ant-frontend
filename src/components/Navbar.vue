@@ -1,45 +1,47 @@
 <template>
-    <div
-        class="relative flex items-center bg-base-100 border-b border-base-300 px-4 h-18 z-50"
+  <div
+    class="sticky top-0 flex items-center bg-card border-b border-border px-4 h-12 z-50"
+  >
+    <router-link
+      to="/"
+      class="text-sm font-bold tracking-tight shrink-0 text-foreground"
     >
-        <router-link to="/" class="text-xl font-bold tracking-tight shrink-0"
-            >Ant</router-link
-        >
-        <div class="join w-1/2 absolute left-1/2 -translate-x-1/2">
-            <div class="join-item flex items-center bg-base-200 px-3">
-                <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="h-4 w-4 text-base-content/50"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                >
-                    <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z"
-                    />
-                </svg>
-            </div>
-            <input
-                type="text"
-                placeholder="Search packages"
-                class="input join-item bg-base-200 flex-1 focus:outline-none border-none shadow-none"
+      Ant
+    </router-link>
+
+    <div class="flex flex-1 justify-center px-6">
+      <div
+        class="flex w-1/2 rounded-lg border border-border bg-input/30 overflow-hidden"
+      >
+        <div class="flex items-center pl-3 px-2">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-4 w-4 text-muted-foreground"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z"
             />
-            <button
-                class="btn join-item btn-neutral rounded-l-none shadow-none"
-            >
-                Search
-            </button>
+          </svg>
         </div>
-        <router-link
-            to="/profile"
-            class="btn btn-ghost btn-circle avatar ml-auto"
+        <Input
+          placeholder="Search packages"
+          class="border-none bg-transparent shadow-none focus-visible:ring-0 rounded-none"
+        />
+        <Button size="sm" class="rounded-none border-none rounded-r-lg h-full px-4"
+          >Search</Button
         >
-            <div class="w-8 rounded-full overflow-hidden">
-                <img alt="Profile" src="/src/assets/antlogo-white.png" />
-            </div>
-        </router-link>
+      </div>
     </div>
+  </div>
 </template>
+
+<script setup lang="ts">
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+</script>
