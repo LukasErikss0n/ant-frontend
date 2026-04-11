@@ -1,6 +1,6 @@
 <template>
   <div
-    class="relative flex items-center bg-card border-b border-border px-4 h-12 z-50"
+    class="sticky top-0 flex items-center bg-card border-b border-border px-4 h-12 z-50"
   >
     <router-link
       to="/"
