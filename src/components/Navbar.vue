@@ -13,7 +13,7 @@
       <div
         class="flex w-1/2 rounded-lg border border-border bg-input/30 overflow-hidden"
       >
-        <div class="flex items-center pl-3">
+        <div class="flex items-center pl-3 px-2">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             class="h-4 w-4 text-muted-foreground"
@@ -33,7 +33,7 @@
           placeholder="Search packages"
           class="border-none bg-transparent shadow-none focus-visible:ring-0 rounded-none"
         />
-        <Button size="sm" class="rounded-none rounded-r-lg h-full px-4"
+        <Button size="sm" class="rounded-none border-none rounded-r-lg h-full px-4"
           >Search</Button
         >
       </div>

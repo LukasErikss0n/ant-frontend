@@ -64,7 +64,8 @@
 </template>
 
 <script setup lang="ts">
-import { ref, h } from 'vue'
+import { ref } from 'vue'
+import { FileText, RefreshCw, MessageCircle } from 'lucide-vue-next'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
@@ -76,13 +77,9 @@ function copyInstall() {
     setTimeout(() => (copied.value = false), 2000)
 }
 
-const DocIcon = { render: () => h('svg', { xmlns: 'http://www.w3.org/2000/svg', fill: 'none', viewBox: '0 0 24 24', stroke: 'currentColor' }, [h('path', { 'stroke-linecap': 'round', 'stroke-linejoin': 'round', 'stroke-width': '1.5', d: 'M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z' })]) }
-const RefreshIcon = { render: () => h('svg', { xmlns: 'http://www.w3.org/2000/svg', fill: 'none', viewBox: '0 0 24 24', stroke: 'currentColor' }, [h('path', { 'stroke-linecap': 'round', 'stroke-linejoin': 'round', 'stroke-width': '1.5', d: 'M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15' })]) }
-const ChatIcon = { render: () => h('svg', { xmlns: 'http://www.w3.org/2000/svg', fill: 'none', viewBox: '0 0 24 24', stroke: 'currentColor' }, [h('path', { 'stroke-linecap': 'round', 'stroke-linejoin': 'round', 'stroke-width': '1.5', d: 'M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z' })]) }
-
 const featureCards = [
-    { title: 'Package Registry', icon: DocIcon, from: 'Publish', to: 'Install', description: 'Publish and distribute packages with ease. Ant automatically handles versioning, dependencies, and distribution at scale.', useCases: 'Libraries, CLI tools, shared modules, internal packages' },
-    { title: 'Version Control', icon: RefreshIcon, from: 'Desired State', to: 'Actual State', description: 'Define package versions declaratively. Ant continuously reconciles your dependency tree and resolves conflicts automatically.', useCases: 'Monorepos, dependency graphs, auto-upgrades, security patches' },
-    { title: 'Live Collaboration', icon: ChatIcon, from: 'Client', to: 'Team', description: 'Real-time collaboration on package development. Stream updates, reviews, and notifications between team members instantly.', useCases: 'Team workflows, code reviews, release coordination, notifications' },
+    { title: 'Package Registry', icon: FileText, from: 'Publish', to: 'Install', description: 'Publish and distribute packages with ease. Ant automatically handles versioning, dependencies, and distribution at scale.', useCases: 'Libraries, CLI tools, shared modules, internal packages' },
+    { title: 'Version Control', icon: RefreshCw, from: 'Desired State', to: 'Actual State', description: 'Define package versions declaratively. Ant continuously reconciles your dependency tree and resolves conflicts automatically.', useCases: 'Monorepos, dependency graphs, auto-upgrades, security patches' },
+    { title: 'Live Collaboration', icon: MessageCircle, from: 'Client', to: 'Team', description: 'Real-time collaboration on package development. Stream updates, reviews, and notifications between team members instantly.', useCases: 'Team workflows, code reviews, release coordination, notifications' },
 ]
 </script>

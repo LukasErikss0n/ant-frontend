@@ -14,39 +14,43 @@
         <div class="flex gap-6 items-start">
             <!-- Left -->
             <div class="flex flex-col gap-4 flex-1 min-w-0">
-                <Card>
-                    <CardHeader><CardTitle class="text-xs uppercase tracking-widest text-muted-foreground">Description</CardTitle></CardHeader>
-                    <CardContent><p class="text-sm text-foreground/80">{{ pkg.description }}</p></CardContent>
-                </Card>
+                <SectionCard>
+                    <template #title>Description</template>
+                    <p class="text-sm text-foreground/80">{{ pkg.description }}</p>
+                </SectionCard>
 
-                <Card>
-                    <CardHeader><CardTitle class="text-xs uppercase tracking-widest text-muted-foreground">README</CardTitle></CardHeader>
-                    <CardContent><div class="text-sm text-foreground/80 whitespace-pre-wrap leading-relaxed">{{ pkg.readme }}</div></CardContent>
-                </Card>
+                <SectionCard>
+                    <template #title>README</template>
+                    <div class="text-sm text-foreground/80 whitespace-pre-wrap leading-relaxed">{{ pkg.readme }}</div>
+                </SectionCard>
             </div>
 
             <!-- Right -->
             <div class="flex flex-col gap-4 w-72 shrink-0">
-                <Card>
-                    <CardHeader><CardTitle class="text-xs uppercase tracking-widest text-muted-foreground">Details</CardTitle></CardHeader>
-                    <CardContent class="flex flex-col gap-3 text-sm">
-                        <div class="flex justify-between"><span class="text-muted-foreground">Owner</span><span class="text-primary">{{ pkg.author }}</span></div>
-                        <div class="flex justify-between"><span class="text-muted-foreground">Created</span><span class="text-foreground/80">{{ pkg.publishedAt }}</span></div>
-                        <div class="flex justify-between"><span class="text-muted-foreground">Downloads</span><span class="text-foreground/80">{{ pkg.downloads }}</span></div>
-                    </CardContent>
-                </Card>
+                <SectionCard>
+                    <template #title>Details</template>
+                    <div class="flex flex-col gap-3">
+                        <DetailRow label="Owner" value-class="text-primary">{{ pkg.author }}</DetailRow>
+                        <DetailRow label="Created" value-class="text-foreground/80">{{ pkg.publishedAt }}</DetailRow>
+                        <DetailRow label="Downloads" value-class="text-foreground/80">{{ pkg.downloads }}</DetailRow>
+                    </div>
+                </SectionCard>
 
-                <Card>
-                    <CardHeader><CardTitle class="text-xs uppercase tracking-widest text-muted-foreground">Download</CardTitle></CardHeader>
-                    <CardContent class="flex gap-2">
-                        <code class="flex-1 bg-muted rounded-md px-3 py-2 text-xs font-mono text-foreground/80 truncate">cpm install {{ pkg.name }}</code>
-                        <Button size="sm" @click="copy(`cpm install ${pkg.name}`)">{{ copied ? 'Copied!' : 'Copy' }}</Button>
-                    </CardContent>
-                </Card>
+                <SectionCard>
+                    <template #title>Download</template>
+                    <div class="flex gap-2">
+                        <code class="flex-1 bg-muted rounded-md px-3 py-2 text-xs font-mono text-foreground/80 truncate">
+                            cpm install {{ pkg.name }}
+                        </code>
+                        <Button size="sm" @click="copy(`cpm install ${pkg.name}`)">
+                            {{ copied ? 'Copied!' : 'Copy' }}
+                        </Button>
+                    </div>
+                </SectionCard>
 
-                <Card>
-                    <CardHeader><CardTitle class="text-xs uppercase tracking-widest text-muted-foreground">Versions</CardTitle></CardHeader>
-                    <CardContent class="flex flex-col gap-2">
+                <SectionCard>
+                    <template #title>Versions</template>
+                    <div class="flex flex-col gap-2">
                         <router-link
                             v-for="v in pkg.versions" :key="v.version"
                             :to="`/packages/${pkg.id}/${v.version}`"
@@ -56,8 +60,8 @@
                             <span>{{ v.version }}</span>
                             <span class="text-muted-foreground/50 text-xs">{{ v.releasedAt }}</span>
                         </router-link>
-                    </CardContent>
-                </Card>
+                    </div>
+                </SectionCard>
             </div>
         </div>
     </div>
@@ -73,7 +77,8 @@ import { useRoute } from 'vue-router'
 import { usePackageStore } from '@/stores/packageStore'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import SectionCard from '@/components/ui/SectionCard.vue'
+import DetailRow from '@/components/ui/DetailRow.vue'
 
 const route = useRoute()
 const store = usePackageStore()
