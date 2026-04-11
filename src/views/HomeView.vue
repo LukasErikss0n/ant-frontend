@@ -49,8 +49,8 @@
           <Button size="lg" as-child>
             <router-link to="/packages">Packages</router-link>
           </Button>
-          <Button size="lg" variant="outline" as-child>
-            <a href="https://github.com/ant-pm">Learn more</a>
+          <Button size="lg" variant="outline" @click="scrollToFeatures">
+            Learn more
           </Button>
         </div>
       </div>
@@ -58,6 +58,7 @@
 
     <!-- Feature cards -->
     <section
+      id="features"
       class="relative min-h-screen flex items-center justify-center py-24 px-6"
     >
       <div class="flex flex-col gap-4 w-full max-w-lg">
@@ -101,6 +102,10 @@ import { FileText, RefreshCw, MessageCircle } from "lucide-vue-next";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+
+function scrollToFeatures() {
+  document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' })
+}
 
 const copied = ref(false);
 function copyInstall() {
