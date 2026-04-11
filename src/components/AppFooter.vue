@@ -26,20 +26,20 @@
       <div class="flex flex-1 gap-16 flex-wrap">
         <div class="flex flex-col gap-3">
           <h3 class="font-semibold text-foreground text-sm">Support</h3>
-          <a
-            href="#"
+          <router-link
+            to="/support#help"
             class="text-muted-foreground hover:text-foreground text-sm transition-colors"
-            >Help</a
+            >Help</router-link
           >
-          <a
-            href="#"
+          <router-link
+            to="/support#status"
             class="text-muted-foreground hover:text-foreground text-sm transition-colors"
-            >Status</a
+            >Status</router-link
           >
-          <a
-            href="#"
+          <router-link
+            to="/support#contact"
             class="text-muted-foreground hover:text-foreground text-sm transition-colors"
-            >Contact Ant</a
+            >Contact Ant</router-link
           >
         </div>
         <div class="flex flex-col gap-3">
@@ -47,22 +47,22 @@
           <router-link
             to="/about"
             class="text-muted-foreground hover:text-foreground text-sm transition-colors"
-            >About</router-link
+            >About Ant</router-link
           >
         </div>
         <div class="flex flex-col gap-3">
           <h3 class="font-semibold text-foreground text-sm">
             Terms &amp; Policies
           </h3>
-          <a
-            href="#"
+          <router-link
+            to="/legal#terms"
             class="text-muted-foreground hover:text-foreground text-sm transition-colors"
-            >Terms of Use</a
+            >Terms of Use</router-link
           >
-          <a
-            href="#"
+          <router-link
+            to="/legal#coc"
             class="text-muted-foreground hover:text-foreground text-sm transition-colors"
-            >Code of Conduct</a
+            >Code of Conduct</router-link
           >
         </div>
       </div>
