@@ -1,5 +1,5 @@
 <template>
-  <router-link :to="`/packages/${pkg.id}`" class="block">
+  <router-link :to="`/packages/${pkg.name}`" class="block">
     <Card
       class="hover:bg-muted/30 transition-colors cursor-pointer overflow-hidden w-full"
     >
@@ -22,31 +22,31 @@
               class="flex items-center gap-2 text-sm text-muted-foreground mt-1"
             >
               <User class="w-3.5 h-3.5 shrink-0" />
-              <span class="truncate">{{ pkg.author }}</span>
+              <span class="truncate">{{ pkg.repository_owner }}</span>
             </div>
           </div>
         </div>
-        <!-- Meta: stars + version, date -->
+        <!-- Meta: downloads + version, date -->
         <div
           class="flex flex-col items-end gap-1.5 shrink-0 text-xs text-muted-foreground"
         >
           <div class="flex items-center gap-1.5">
             <Badge variant="outline" class="gap-1 px-2 py-0 text-xs h-5">
-              <Star class="w-3 h-3" />{{ pkg.downloads }}
+              <download class="w-3 h-3" />{{ pkg.download_count }}
             </Badge>
             <Badge
               class="px-2 py-0 text-xs h-5 font-mono bg-primary/20 text-primary border-primary/30"
             >
-              {{ pkg.version }}
+              {{ pkg.latest_version.version }}
             </Badge>
           </div>
-          <span>Updated {{ pkg.publishedAt }}</span>
+          <span>Updated {{ formatDate(pkg.latest_version.published_at) }}</span>
         </div>
       </div>
       <!-- Description -->
       <CardContent class="px-5 py-4">
         <p class="text-sm text-muted-foreground leading-relaxed">
-          {{ pkg.description }}
+          {{ pkg.latest_version.description }}
         </p>
       </CardContent>
     </Card>
@@ -54,10 +54,19 @@
 </template>
 
 <script setup lang="ts">
-import type { Package } from "@/stores/packageStore";
-import { User, Star } from "lucide-vue-next";
+import type { PackageCatalogItem } from "@/types/package";
+import { User, Download } from "lucide-vue-next";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 
-defineProps<{ pkg: Package }>();
+defineProps<{ pkg: PackageCatalogItem }>();
+
+function formatDate(iso: string): string {
+  return new Date(iso).toLocaleDateString("sv-SE", {
+    timeZone: "Europe/Stockholm",
+    month: "short",
+    day: "2-digit",
+    year: "numeric",
+  });
+}
 </script>

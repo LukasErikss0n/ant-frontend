@@ -1,6 +1,6 @@
 # Ant Frontend 🐜
 
-Welcome to the frontend repository for **Ant**. This project is a modern, responsive web application built with Vue 3, styled with Tailwind CSS and daisyUI, and uses Pinia for state management. 
+Welcome to the frontend repository for **Ant-base**. This project is a modern, responsive web application built with Vue 3, styled with Tailwind CSS and daisyUI, and uses Pinia for state management. 
 
 The application is fully Dockerized for easy setup and deployment across different environments.
 

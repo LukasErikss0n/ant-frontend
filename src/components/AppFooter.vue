@@ -3,7 +3,7 @@
     <div class="max-w-6xl mx-auto px-8 py-12 flex gap-16">
       <div class="flex flex-col gap-4 shrink-0">
         <router-link to="/" class="text-2xl font-bold text-foreground"
-          >Ant</router-link
+          >AntBase</router-link
         >
         <a
           href="https://github.com/ant-pm"

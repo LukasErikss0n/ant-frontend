@@ -1,4 +1,6 @@
 <template>
+  
+
   <div v-if="pkg" class="max-w-5xl mx-auto px-6 py-8">
     <div class="flex items-center justify-between mb-4">
       <div class="text-sm text-muted-foreground flex items-center gap-1">
@@ -6,9 +8,11 @@
           >Packages</router-link
         >
         <span>/</span><span>{{ pkg.name }}</span> <span>/</span
-        ><span>{{ activeVersion }}</span>
+        ><span>{{ pkg.selected_version.version }}</span>
       </div>
-      <Badge variant="outline" class="font-mono">v{{ activeVersion }}</Badge>
+      <Badge variant="outline" class="font-mono"
+        >v{{ pkg.selected_version.version }}</Badge
+      >
     </div>
 
     <h1 class="text-3xl font-bold text-foreground mb-6">{{ pkg.name }}</h1>
@@ -18,16 +22,9 @@
       <div class="flex flex-col gap-4 flex-1 min-w-0">
         <SectionCard>
           <template #title>Description</template>
-          <p class="text-sm text-foreground/80">{{ pkg.description }}</p>
-        </SectionCard>
-
-        <SectionCard>
-          <template #title>README</template>
-          <div
-            class="text-sm text-foreground/80 whitespace-pre-wrap leading-relaxed"
-          >
-            {{ pkg.readme }}
-          </div>
+          <p class="text-sm text-foreground/80 min-w-[19rem]">
+            {{ pkg.selected_version.description }}
+          </p>
         </SectionCard>
       </div>
 
@@ -37,16 +34,22 @@
           <template #title>Details</template>
           <div class="flex flex-col gap-3">
             <DetailRow label="Owner" value-class="text-primary">{{
-              pkg.author
+              pkg.repository_owner
             }}</DetailRow>
-            <DetailRow label="Created" value-class="text-foreground/80">{{
-              pkg.publishedAt
+            <DetailRow label="Published" value-class="text-foreground/80">{{
+              formatDate(pkg.selected_version.published_at)
             }}</DetailRow>
             <DetailRow label="Downloads" value-class="text-foreground/80">{{
-              pkg.downloads
+              pkg.download_count
             }}</DetailRow>
           </div>
         </SectionCard>
+
+        <PackageActions
+          :name="pkg.name"
+          :version="pkg.selected_version.version"
+          :templates="pkg.selected_version.templates"
+        />
 
         <SectionCard>
           <template #title>Download</template>
@@ -68,17 +71,17 @@
             <router-link
               v-for="v in pkg.versions"
               :key="v.version"
-              :to="`/packages/${pkg.id}/${v.version}`"
+              :to="`/packages/${pkg.name}/${v.version}`"
               class="flex justify-between items-center text-sm py-0.5 hover:underline"
               :class="
-                v.version === activeVersion
+                v.version === pkg.selected_version.version
                   ? 'text-primary font-semibold'
                   : 'text-muted-foreground'
               "
             >
               <span>{{ v.version }}</span>
               <span class="text-muted-foreground/50 text-xs">{{
-                v.releasedAt
+                formatVersionDate(v.published_at)
               }}</span>
             </router-link>
           </div>
@@ -96,21 +99,47 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from "vue";
+import { ref, computed, onMounted, watch } from "vue";
 import { useRoute } from "vue-router";
-import { usePackageStore } from "@/stores/packageStore";
+import { usePackageStore } from "@/stores/package";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import SectionCard from "@/components/ui/SectionCard.vue";
 import DetailRow from "@/components/ui/DetailRow.vue";
+import PackageActions from "@/components/PackageActions.vue";
 
 const route = useRoute();
 const store = usePackageStore();
-const pkg = computed(() => store.getById(route.params.id as string));
-const activeVersion = computed(
-  () =>
-    (route.params.version as string) || pkg.value?.versions[0].version || "",
-);
+
+function fetchCurrent() {
+  store.fetchPackageDetail(
+    route.params.id as string,
+    route.params.version as string | undefined,
+  );
+}
+
+onMounted(fetchCurrent);
+watch(() => [route.params.id, route.params.version], fetchCurrent);
+
+const pkg = computed(() => store.currentPackage);
+
+function formatDate(iso: string): string {
+  return new Date(iso).toLocaleDateString("sv-SE", {
+    timeZone: "Europe/Stockholm",
+    month: "short",
+    day: "2-digit",
+    year: "numeric",
+  });
+}
+
+function formatVersionDate(iso: string): string {
+  return new Date(iso).toLocaleDateString("sv-SE", {
+    timeZone: "Europe/Stockholm",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  });
+}
 
 const copied = ref(false);
 function copy(text: string) {
