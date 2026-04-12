@@ -15,3 +15,11 @@ services:
     environment:
       # This forces Vite to watch for file changes inside Docker (crucial for Windows/Mac users)
       - CHOKIDAR_USEPOLLING=true
+
+  tunnel:
+    image: cloudflare/cloudflared:latest
+    container_name: antbase_tunnel
+    restart: unless-stopped
+    command: tunnel run
+    env_file:
+      - .env
