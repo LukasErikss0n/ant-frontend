@@ -6,7 +6,7 @@
       to="/"
       class="text-sm font-bold tracking-tight shrink-0 text-foreground"
     >
-      Ant
+      AntBase
     </router-link>
 
     <div class="flex flex-1 justify-center px-6">

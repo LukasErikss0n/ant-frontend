@@ -8,17 +8,21 @@
         Loading...
       </p>
       <div v-else class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <PackageCard v-for="pkg in store.packages" :key="pkg.id" :pkg="pkg" />
+        <PackageCard v-for="pkg in sortedPackages" :key="pkg.name" :pkg="pkg" />
       </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { onMounted } from "vue";
-import { usePackageStore } from "@/stores/packageStore";
+import { computed, onMounted } from "vue";
+import { usePackageStore } from "@/stores/package";
 import PackageCard from "@/components/PackageCard.vue";
 
 const store = usePackageStore();
 onMounted(() => store.fetchPackages());
+
+const sortedPackages = computed(() =>
+  [...store.packages].sort((a, b) => b.download_count - a.download_count),
+);
 </script>
