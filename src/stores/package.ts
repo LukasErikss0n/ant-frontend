@@ -28,4 +28,4 @@ export const usePackageStore = defineStore('packages', () => {
   }
 
   return { packages, currentPackage, loading, fetchPackages, fetchPackageDetail }
-})
+}) 
