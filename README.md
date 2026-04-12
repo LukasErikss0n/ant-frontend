@@ -30,7 +30,7 @@ Make sure you have the following installed on your machine:
 
 1. **Clone the repository**:
 ```bash
-git clone https://github.com/LukasErikss0n/ant-frontend.git
+git clone https://github.com/ant-pm/antbase-frontend.git
 cd ant-frontend
 ```
 
