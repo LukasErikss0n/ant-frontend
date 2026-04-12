@@ -125,13 +125,8 @@ const services = [
     name: 'API',
     icon: Server,
     description: 'REST API powering all package installs and queries.',
-    updatedAt: 'Apr 11, 2026',
+    updatedAt: 'Apr 12, 2026',
   },
-  {
-    name: 'CDN',
-    icon: Zap,
-    description: 'Global content delivery for fast package downloads.',
-    updatedAt: 'Apr 11, 2026',
-  },
+
 ]
 </script>
