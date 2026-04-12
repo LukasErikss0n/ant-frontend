@@ -37,9 +37,8 @@
     <div
       v-if="templatesListOpen"
       class="fixed inset-0 z-50 flex items-center justify-center"
-      @click.self="templatesListOpen = false"
     >
-      <div class="absolute inset-0 bg-black/60" />
+      <div class="absolute inset-0 bg-black/60" @click="templatesListOpen = false" />
       <div class="relative z-10 bg-background border border-border rounded-lg shadow-xl w-full max-w-sm mx-4">
         <div class="flex items-center justify-between px-5 py-4 border-b border-border">
           <h2 class="text-base font-semibold text-foreground">Templates</h2>
